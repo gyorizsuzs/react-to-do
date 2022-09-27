@@ -8,7 +8,7 @@ function Todo({ todo, index, completeTodo, removeTodo }) {
       style={{ textDecoration: todo.isCompleted ? "line-through" : "" }}
     >
       {todo.text}
-      <div>
+      <div className="button-container">
         <button onClick={() => completeTodo(index)}>Complete</button>
         <button onClick={() => removeTodo(index)}>x</button>
       </div>
@@ -32,6 +32,7 @@ function TodoForm({ addTodo }) {
         type="text"
         className="input"
         value={value}
+        placeholder="add new to do here.."
         onChange={(e) => setValue(e.target.value)}
       />
     </form>
@@ -65,6 +66,7 @@ function App() {
   return (
     <div className="app">
       <div className="todo-list">
+        <TodoForm addTodo={addTodo} />
         {todos.map((todo, index) => (
           <Todo
             key={index}
@@ -74,7 +76,6 @@ function App() {
             removeTodo={removeTodo}
           />
         ))}
-        <TodoForm addTodo={addTodo} />
       </div>
     </div>
   );
